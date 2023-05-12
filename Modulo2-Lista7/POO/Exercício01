@@ -1,0 +1,48 @@
+interface Operario {
+    void trabalhar();
+}
+
+class OperadorDeCorte implements Operario {
+    @Override
+    public void trabalhar() {
+        System.out.println("corta, corta, corta ...");
+    }
+}
+
+class OperadorDeDobra implements Operario {
+    @Override
+    public void trabalhar() {
+        System.out.println("dobra, dobra, dobra ...");
+    }
+}
+
+class OperadorDePrensa implements Operario {
+    @Override
+    public void trabalhar() {
+        System.out.println("prensa, prensa, prensa ...");
+    }
+}
+
+class Fabrica {
+    private List<Operario> operarios = new ArrayList<>();
+
+    public void addOperario(Operario operario) {
+        operarios.add(operario);
+    }
+
+    public void iniciarExpediente() {
+        for (Operario operario : operarios) {
+            operario.trabalhar();
+        }
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Fabrica fabrica = new Fabrica();
+        fabrica.addOperario(new OperadorDeCorte());
+        fabrica.addOperario(new OperadorDeDobra());
+        fabrica.addOperario(new OperadorDePrensa());
+        fabrica.iniciarExpediente();
+    }
+}
